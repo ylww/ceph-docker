@@ -4,7 +4,7 @@
 # rbd-unlock - release an RBD lock
 #
 
-FROM ceph/rbd
+FROM ceph/rbd:firefly
 MAINTAINER Seán C McCord "ulexus@gmail.com"
 
 ADD etcdctl /usr/bin/etcdctl
