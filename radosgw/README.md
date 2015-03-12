@@ -16,3 +16,8 @@ It will look for `/etc/ceph/ceph.client.admin.keyring` with which to authenticat
 
 Commonly, you will want to bind-mount your host's `/etc/ceph` into the container.  For example:
 `docker run -d --net=host -e RGW_NAME=myrgw -v /etc/ceph:/etc/ceph ceph/radosgw`
+
+Note
+----
+
+In the `firefly` version of this radosgw container, the `rgw socket path` should always be set to `/tmp/radosgw.socket`.  Later versions allow you to override and specify the socket.
