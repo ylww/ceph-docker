@@ -1,6 +1,6 @@
 # CEPH BASE IMAGE
-# CEPH VERSION: Firefly
-# CEPH VERSION DETAIL: 0.80.8
+# CEPH VERSION: Giant
+# CEPH VERSION DETAIL: 0.87.x
 
 FROM ubuntu:14.04
 MAINTAINER Sébastien Han "seb@redhat.com"
