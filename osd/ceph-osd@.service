@@ -1,20 +1,22 @@
 [Unit]
-Description=Ceph Monitor
+Description=Ceph OSD
 After=docker.service
+RequiresMountsFor=/var/lib/ceph/osd/ceph-%i
 
 [Service]
 EnvironmentFile=-/etc/environment
-Environment=MON_IP=${COREOS_PUBLIC_IPV4}
-Environment=MON_NAME=%H
+Environment=OSD_ID=%i
+Environment=HOSTNAME=%H
 ExecStartPre=/bin/mkdir -p /etc/ceph /var/lib/ceph
 ExecStartPre=-/usr/bin/docker kill %p
 ExecStartPre=-/usr/bin/docker rm %p
-ExecStart=/usr/bin/docker run --rm --name %p --net=host -p 6789:6789 \
-   -e MON_IP=${MON_IP} \
-   -e MON_NAME=${MON_NAME} \
-   -v /var/lib/ceph:/var/lib/ceph \
+ExecStart=/usr/bin/docker run --rm --name %p --net=host -privileged \
+   -e OSD_IP=${OSD_IP} \
+   -e HOSTNAME=${HOSTNAME} \
    -v /etc/ceph:/etc/ceph \
-   ceph/mon
+   -v /dev:/dev \
+   -v /var/lib/ceph/osd/ceph-%i:/var/lib/ceph/osd/ceph-%i \
+   ceph/osd
 ExecStopPost=-/usr/bin/docker stop %p
 ExecStopPost=-/usr/bin/docker rm %p
 Restart=always
