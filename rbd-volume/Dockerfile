@@ -9,7 +9,7 @@
 #
 # VERSION 0.0.2
 
-FROM ceph/base
+FROM ceph/base:infernalis
 MAINTAINER Seán C McCord "ulexus@gmail.com"
 
 # Add mountWait

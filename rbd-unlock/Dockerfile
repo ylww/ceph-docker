@@ -4,7 +4,7 @@
 # rbd-unlock - release an RBD lock
 #
 
-FROM ceph/rbd
+FROM ceph/rbd:infernalis
 MAINTAINER Seán C McCord "ulexus@gmail.com"
 
 ADD entrypoint.sh /entrypoint.sh
