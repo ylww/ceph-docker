@@ -12,6 +12,11 @@ Valid values are:
 * `mds` deploys a MDS
 * `rgw` deploys a Rados Gateway
 
+```
+export MON_IP=
+export CEPH_PUBLIC_NETWORK=
+export KV_IP=
+```
 
 Usage
 -----
@@ -61,8 +66,8 @@ Populate Key Value store
 $ sudo docker run -d --net=host \
 -v /etc/ceph:/etc/ceph \
 -v /var/lib/ceph/:/var/lib/ceph/ \
--e MON_IP=192.168.0.20 \
--e CEPH_PUBLIC_NETWORK=192.168.0.0/24 \
+-e MON_IP=${MON_IP} \
+-e CEPH_PUBLIC_NETWORK=${CEPH_PUBLIC_NETWORK}/24 \
 -e KV_TYPE=etcd \
 -e KV_IP=127.0.0.1 \
 -e KV_PORT=4001 \
@@ -78,8 +83,8 @@ Without KV store, run:
 $ sudo docker run -d --net=host \
 -v /etc/ceph:/etc/ceph \
 -v /var/lib/ceph/:/var/lib/ceph/ \
--e MON_IP=192.168.0.20 \
--e CEPH_PUBLIC_NETWORK=192.168.0.0/24 \
+-e MON_IP=${MON_IP} \
+-e CEPH_PUBLIC_NETWORK=${CEPH_PUBLIC_NETWORK}/24 \
 ceph/daemon mon
 ```
 
@@ -88,10 +93,10 @@ With KV store, run:
 ```
 $ sudo docker run -d --net=host \
 -v /var/lib/ceph/:/var/lib/ceph/ \
--e MON_IP=192.168.0.20 \
--e CEPH_PUBLIC_NETWORK=192.168.0.0/24 \
+-e MON_IP=${MON_IP} \
+-e CEPH_PUBLIC_NETWORK=${CEPH_PUBLIC_NETWORK}/24 \
 -e KV_TYPE=etcd \
--e KV_IP=192.168.0.20 \
+-e KV_IP=${KV_IP} \
 ceph/daemon mon
 ```
 
@@ -154,7 +159,7 @@ $ sudo docker run -d --net=host \
 -e OSD_DEVICE=/dev/vdd \
 -e OSD_FORCE_ZAP=1 \
 -e KV_TYPE=etcd \
--e KV_IP=192.168.0.20 \
+-e KV_IP=${KV_IP} \
 ceph/daemon osd
 ```
 
@@ -185,7 +190,7 @@ $ sudo docker run -d --net=host \
 -e OSD_DEVICE=/dev/vdd \
 -e OSD_TYPE=disk \
 -e KV_TYPE=etcd \
--e KV_IP=192.168.0.20 \
+-e KV_IP=${KV_IP} \
 ceph/daemon osd
 ```
 
@@ -303,7 +308,7 @@ $ sudo docker run -d --net=host \
 -v /var/lib/ceph/:/var/lib/ceph/ \
 -e CEPHFS_CREATE=1 \
 -e KV_TYPE=etcd \
--e KV_IP=192.168.0.20 \
+-e KV_IP=${KV_IP} \
 ceph/daemon mds
 ```
 
@@ -337,7 +342,7 @@ With kv backend, run:
 $ sudo docker run -d --net=host \
 -v /var/lib/ceph/:/var/lib/ceph/ \
 -e KV_TYPE=etcd \
--e KV_IP=192.168.0.20 \
+-e KV_IP=${KV_IP} \
 ceph/daemon rgw
 ```
 
@@ -368,7 +373,7 @@ This is pretty straighforward. The `--net=host` is not mandatory, if you don't u
 ```
 $ sudo docker run -d --net=host \
 -e KV_TYPE=etcd \
--e KV_IP=192.168.0.20 \
+-e KV_IP=${KV_IP} \
 ceph/daemon restapi
 ```
 
