@@ -12,11 +12,6 @@ Valid values are:
 * `mds` deploys a MDS
 * `rgw` deploys a Rados Gateway
 
-```
-export MON_IP=
-export CEPH_PUBLIC_NETWORK=
-export KV_IP=
-```
 
 Usage
 -----
@@ -26,6 +21,11 @@ You can use this container to bootstrap any Ceph daemon.
 * `CLUSTER` is the name of the cluster (DEFAULT: ceph)
 * `HOSTNAME` is the hostname of the machine  (DEFAULT: $(hostname))
 
+```
+export MON_IP=
+export CEPH_PUBLIC_NETWORK=
+export KV_IP=
+```
 
 SELinux
 -------
